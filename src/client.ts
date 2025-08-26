@@ -1549,7 +1549,7 @@ export class Client extends EventSpewer {
     }
     if (options.messageReference && typeof(options.messageReference) === 'object') {
       body.message_reference = {
-        channel_id: options.messageReference.channelId,
+        channel_id: options.messageReference.channelId || "",
         fail_if_not_exists: options.messageReference.failIfNotExists,
         guild_id: options.messageReference.guildId,
         message_id: options.messageReference.messageId,
@@ -3664,19 +3664,19 @@ export class Client extends EventSpewer {
       params,
     };
 
-    if (compatibleType) {
-      switch (compatibleType) {
-        case 'github': {
-          route.path = Api.WEBHOOK_TOKEN_GITHUB;
-        }; break;
-        case 'slack': {
-          route.path = Api.WEBHOOK_TOKEN_SLACK;
-        }; break;
-        default: {
-          throw new Error('Invalid Webhook Compatibility Type');
-        };
-      }
-    }
+    // if (compatibleType) {
+    //   switch (compatibleType) {
+    //     case 'github': {
+    //       route.path = Api.WEBHOOK_TOKEN_GITHUB;
+    //     }; break;
+    //     case 'slack': {
+    //       route.path = Api.WEBHOOK_TOKEN_SLACK;
+    //     }; break;
+    //     default: {
+    //       throw new Error('Invalid Webhook Compatibility Type');
+    //     };
+    //   }
+    // }
 
     if (options.allowedMentions && typeof(options.allowedMentions) === 'object') {
       body.allowed_mentions = {
