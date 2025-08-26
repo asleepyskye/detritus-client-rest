@@ -1256,6 +1256,8 @@ export class Client extends EventSpewer {
         content: data.content,
         flags: data.flags,
         tts: data.tts,
+        custom_id: data.custom_id,
+        title: data.title,
       };
 
       if (data.allowedMentions && typeof(data.allowedMentions) === 'object') {
@@ -1267,46 +1269,7 @@ export class Client extends EventSpewer {
       }
 
       if (data.components && typeof(data.components) === 'object') {
-        if ('toJSON' in data.components) {
-          body.data.components = data.components;
-        } else {
-          body.data.components = data.components.map((component) => {
-            if ('toJSON' in component) {
-              return component;
-            }
-            return {
-              components: component.components && component.components.map((child) => {
-                if ('toJSON' in child) {
-                  return child;
-                }
-                return {
-                  custom_id: child.customId,
-                  disabled: child.disabled,
-                  emoji: child.emoji,
-                  label: child.label,
-                  max_values: child.maxValues,
-                  min_values: child.minValues,
-                  options: child.options,
-                  placeholder: child.placeholder,
-                  style: child.style,
-                  type: child.type,
-                  url: child.url,
-                };
-              }),
-              custom_id: component.customId,
-              disabled: component.disabled,
-              emoji: component.emoji,
-              label: component.label,
-              max_values: component.maxValues,
-              min_values: component.minValues,
-              options: component.options,
-              placeholder: component.placeholder,
-              style: component.style,
-              type: component.type,
-              url: component.url,
-            };
-          });
-        }
+        body.data.components = data.components;
       }
 
       if (data.embed !== undefined) {
@@ -1455,6 +1418,7 @@ export class Client extends EventSpewer {
       nonce: options.nonce,
       sticker_ids: options.stickerIds,
       tts: options.tts,
+      flags: options.flags,
     };
 
     if (options.activity && typeof(options.activity) === 'object') {
@@ -1473,46 +1437,7 @@ export class Client extends EventSpewer {
       };
     }
     if (options.components && typeof(options.components) === 'object') {
-      if ('toJSON' in options.components) {
-        body.components = options.components;
-      } else {
-        body.components = options.components.map((component) => {
-          if ('toJSON' in component) {
-            return component;
-          }
-          return {
-            components: component.components && component.components.map((child) => {
-              if ('toJSON' in child) {
-                return child;
-              }
-              return {
-                custom_id: child.customId,
-                disabled: child.disabled,
-                emoji: child.emoji,
-                label: child.label,
-                max_values: child.maxValues,
-                min_values: child.minValues,
-                options: child.options,
-                placeholder: child.placeholder,
-                style: child.style,
-                type: child.type,
-                url: child.url,
-              };
-            }),
-            custom_id: component.customId,
-            disabled: component.disabled,
-            emoji: component.emoji,
-            label: component.label,
-            max_values: component.maxValues,
-            min_values: component.minValues,
-            options: component.options,
-            placeholder: component.placeholder,
-            style: component.style,
-            type: component.type,
-            url: component.url,
-          };
-        });
-      }
+      body.components = options.components;
     }
     if (options.embed !== undefined) {
       if (options.embed) {
@@ -1616,7 +1541,7 @@ export class Client extends EventSpewer {
     ) {
       throw new Error('Cannot send an empty message.');
     }
-
+    
     return this.request({
       body,
       files,
@@ -3172,46 +3097,7 @@ export class Client extends EventSpewer {
       };
     }
     if (options.components && typeof(options.components) === 'object') {
-      if ('toJSON' in options.components) {
-        body.components = options.components;
-      } else {
-        body.components = options.components.map((component) => {
-          if ('toJSON' in component) {
-            return component;
-          }
-          return {
-            components: component.components && component.components.map((child) => {
-              if ('toJSON' in child) {
-                return child;
-              }
-              return {
-                custom_id: child.customId,
-                disabled: child.disabled,
-                emoji: child.emoji,
-                label: child.label,
-                max_values: child.maxValues,
-                min_values: child.minValues,
-                options: child.options,
-                placeholder: child.placeholder,
-                style: child.style,
-                type: child.type,
-                url: child.url,
-              };
-            }),
-            custom_id: component.customId,
-            disabled: component.disabled,
-            emoji: component.emoji,
-            label: component.label,
-            max_values: component.maxValues,
-            min_values: component.minValues,
-            options: component.options,
-            placeholder: component.placeholder,
-            style: component.style,
-            type: component.type,
-            url: component.url,
-          };
-        });
-      }
+      body.components = options.components;
     }
     if (options.embed !== undefined) {
       if (options.embed) {
@@ -3480,46 +3366,7 @@ export class Client extends EventSpewer {
       };
     }
     if (options.components && typeof(options.components) === 'object') {
-      if ('toJSON' in options.components) {
-        body.components = options.components;
-      } else {
-        body.components = options.components.map((component) => {
-          if ('toJSON' in component) {
-            return component;
-          }
-          return {
-            components: component.components && component.components.map((child) => {
-              if ('toJSON' in child) {
-                return child;
-              }
-              return {
-                custom_id: child.customId,
-                disabled: child.disabled,
-                emoji: child.emoji,
-                label: child.label,
-                max_values: child.maxValues,
-                min_values: child.minValues,
-                options: child.options,
-                placeholder: child.placeholder,
-                style: child.style,
-                type: child.type,
-                url: child.url,
-              };
-            }),
-            custom_id: component.customId,
-            disabled: component.disabled,
-            emoji: component.emoji,
-            label: component.label,
-            max_values: component.maxValues,
-            min_values: component.minValues,
-            options: component.options,
-            placeholder: component.placeholder,
-            style: component.style,
-            type: component.type,
-            url: component.url,
-          };
-        });
-      }
+      body.components = options.components;
     }
     if (options.embed !== undefined) {
       if (options.embed) {
@@ -3686,46 +3533,7 @@ export class Client extends EventSpewer {
       };
     }
     if (options.components && typeof(options.components) === 'object') {
-      if ('toJSON' in options.components) {
-        body.components = options.components;
-      } else {
-        body.components = options.components.map((component) => {
-          if ('toJSON' in component) {
-            return component;
-          }
-          return {
-            components: component.components && component.components.map((child) => {
-              if ('toJSON' in child) {
-                return child;
-              }
-              return {
-                custom_id: child.customId,
-                disabled: child.disabled,
-                emoji: child.emoji,
-                label: child.label,
-                max_values: child.maxValues,
-                min_values: child.minValues,
-                options: child.options,
-                placeholder: child.placeholder,
-                style: child.style,
-                type: child.type,
-                url: child.url,
-              };
-            }),
-            custom_id: component.customId,
-            disabled: component.disabled,
-            emoji: component.emoji,
-            label: component.label,
-            max_values: component.maxValues,
-            min_values: component.minValues,
-            options: component.options,
-            placeholder: component.placeholder,
-            style: component.style,
-            type: component.type,
-            url: component.url,
-          };
-        });
-      }
+      body.components = options.components;
     }
     if (options.embed !== undefined) {
       if (options.embed) {
